@@ -1,0 +1,1 @@
+import{r as o,j as t,f}from"./chunk-xPaKrgBt.js";const d=o.forwardRef((e,r)=>t.jsx("body",{...e,ref:r}));d.displayName="Body";const m="div",n=o.forwardRef(({tag:e,...r},a)=>{const s=f(r)??e??m;return o.createElement(s,{...r,ref:a})});n.displayName="Box";export{d as f,n};
