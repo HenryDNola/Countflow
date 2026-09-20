@@ -162,7 +162,18 @@ def body(sections):
     return ''.join(out)
 
 
+# Every page's "GET COUNTFLOW" button points at the app. (It used to open a
+# Google Sheets template — the product hasn't been that for months.)
+OLD_BUTTON = 'https://docs.google.com/spreadsheets/d/1K8tJkBP1QB2iLmN9M-AG_zc5sUXFjGqNvtH6yi6tLrI/template/preview'
+APP = 'https://app.countflow.dev'
+
 root = pathlib.Path(__file__).resolve().parent
+for page in list(root.glob('*.html')) + list(root.glob('*/index.html')):
+    t = page.read_text(encoding='utf-8')
+    if OLD_BUTTON in t:
+        page.write_text(t.replace(OLD_BUTTON, APP), encoding='utf-8')
+        print('pointed the Get CountFlow button at the app on', page.name)
+
 for folder, sections in [('privacy-policy', PRIVACY), ('terms-of-service', TERMS)]:
     f = root / folder / 'index.html'
     html = f.read_text(encoding='utf-8')
